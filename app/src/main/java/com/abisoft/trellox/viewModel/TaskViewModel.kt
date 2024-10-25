@@ -12,7 +12,7 @@ class TaskViewModel : ViewModel() {
 
     private val apiService = RetrofitClient.getApiService()
 
-    // API'dan kelgan ma'lumotlarni saqlash uchun LiveData
+
     private val _tasks = MutableLiveData<List<Task>>()
     val tasks: LiveData<List<Task>> get() = _tasks
 
@@ -25,15 +25,15 @@ class TaskViewModel : ViewModel() {
     private val _reviewTasks = MutableLiveData<List<Task>>()
     val reviewTasks: LiveData<List<Task>> get() = _reviewTasks
 
-    // Xatolarni log qilish uchun
+
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
 
-    // Ma'lumotlarni olish uchun funksiya
+
     fun fetchTasks(token: String) {
         viewModelScope.launch {
             try {
-                // Bearer token bilan API'ga so'rov yuborish
+
                 val response = apiService.getAllTasks("Bearer $token")
                 if (response.isSuccessful) {
                     _tasks.value = response.body()

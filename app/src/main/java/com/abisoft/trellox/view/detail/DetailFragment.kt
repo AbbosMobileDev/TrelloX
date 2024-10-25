@@ -14,15 +14,15 @@ import com.abisoft.trellox.model.TaskRow
 import com.bumptech.glide.Glide
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
-    private var _binding: FragmentDetailBinding? = null // Backing property for binding
-    private val binding get() = _binding!! // Non-nullable binding
+    private var _binding: FragmentDetailBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDetailBinding.inflate(inflater, container, false) // Inflate the binding
+        _binding = FragmentDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -31,19 +31,19 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         super.onViewCreated(view, savedInstanceState)
         val task = arguments?.getParcelable<TaskRow>("key")
         binding.toolbar.setNavigationOnClickListener {
-            findNavController().navigateUp() // Orqaga qaytish funksiyasi
+            findNavController().navigateUp()
         }
-        // Ma'lumotlarni ekranda ko'rsatish
+
         task?.let {
             binding.apply {
                 txtName.text = it.name
                 txtTaskId.text = it.taskId.toString()
-                txtIndex.text = it.index.toString() // Agar 'index' uchun TextView bo'lsa
+                txtIndex.text = it.index.toString()
                 txtProjectId.text = it.projectId
                 txtProjectName.text = it.projectName
                 txtOwnerId.text = it.ownerId.toString()
                 txtOwnerName.text = it.ownerName
-                txtExcutorId.text = it.executorId.toString() // Agar 'executorId' uchun TextView bo'lsa
+                txtExcutorId.text = it.executorId.toString()
                 txtExcutorName.text = it.executorName
                 txtTaskData.text = it.taskData
                 txtTermData.text = it.termData

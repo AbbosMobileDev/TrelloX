@@ -1,10 +1,7 @@
 package com.abisoft.trellox.model
 
-import android.os.Parcel
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
 data class KanbanColumn(val title: String, val tasks: List<TaskRow>)
 @Parcelize
