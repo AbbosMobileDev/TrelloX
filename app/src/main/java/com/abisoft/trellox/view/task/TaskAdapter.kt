@@ -25,9 +25,7 @@ class TaskAdapter(private val tasks: List<TaskRow>,
 
     inner class TaskViewHolder(private val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
-            // Set click listener for the item
             binding.root.setOnClickListener {
-                // Call the listener with the clicked task
                 listener.onTaskClick(tasks[adapterPosition])
             }
         }
