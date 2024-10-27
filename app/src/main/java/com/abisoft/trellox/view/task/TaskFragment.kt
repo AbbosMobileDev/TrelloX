@@ -42,7 +42,7 @@ class TaskFragment : Fragment(R.layout.fragment_task), KanbanAdapter.OnTaskClick
         }
 
         val initialColumns = listOf(
-            KanbanColumn("New", emptyList()), // Boshlang'ich bo'sh ro'yxat
+            KanbanColumn("New", emptyList()),
             KanbanColumn("In Progress", listOf()),
             KanbanColumn("In Review", listOf())
         )
@@ -106,27 +106,20 @@ class TaskFragment : Fragment(R.layout.fragment_task), KanbanAdapter.OnTaskClick
         val view = inflater.inflate(R.layout.fragment_task, container, false)
         val tokenManager = TokenManager(requireContext())
         taskViewModel = ViewModelProvider(this)[TaskViewModel::class.java]
-
-
-        // ViewModel'dagi ma'lumotlarni kuzatish
         taskViewModel.tasks.observe(viewLifecycleOwner) { tasks ->
-            // Logda chiqarish
             tasks.forEach { task ->
                 Log.d("TaskFragment", "Task: ${task.name}, Description: ${task.name}")
                 println("Ishladi ::: ${task}")
             }
         }
 
-        // Xatolarni kuzatish
         taskViewModel.error.observe(viewLifecycleOwner) { error ->
             Log.e("TaskFragment", "Error: $error")
 
         }
 
-        // Ma'lumotlarni olish uchun token
         val bearerToken = tokenManager.getToken().toString() // Bu yerda tokenni o'rnating
 
-        // Ma'lumotlarni olishni boshlash
         taskViewModel.fetchTasks(bearerToken)
 
         return view
